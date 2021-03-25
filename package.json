@@ -1,14 +1,16 @@
 {
   "name": "gitpractise-starwars-name",
-  "version": "1.2.0-beta.0",
+  "version": "0.0.0-development",
   "description": "Get random Star Wars names",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "commit": "git-cz",
+    "test": "mocha src/index.test.js -w",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kripa644/gitPractise-starwars-name.git"
+    "url": "https://github.com/kripa644/gitPractise-starwars-name.git"
   },
   "keywords": [
     "random",
@@ -23,5 +25,15 @@
   "homepage": "https://github.com/kripa644/gitPractise-starwars-name#readme",
   "dependencies": {
     "unique-random-array": "2.0.0"
+  },
+  "devDependencies": {
+    "chai": "4.3.4",
+    "commitizen": "4.2.3",
+    "cz-conventional-changelog": "3.3.0",
+    "mocha": "8.3.2",
+    "semantic-release": "^17.4.2"
+  },
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
   }
 }
