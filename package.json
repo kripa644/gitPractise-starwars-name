@@ -7,7 +7,7 @@
     "commit": "git-cz",
     "cover": "nyc npm t",
     "watch:test": "npm t -- -w",
-    "test": "mocha src/index.test.js -w --require babel-core/register",
+    "test": "mocha src/index.test.js --require babel-core/register",
     "semantic-release": "semantic-release",
     "build": "babel --copy-files --out-dir dist --ignore *.test.js src",
     "prebuild": "rimraf dist",
