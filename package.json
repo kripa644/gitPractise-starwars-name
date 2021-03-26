@@ -2,13 +2,16 @@
   "name": "gitpractise-starwars-name",
   "version": "0.0.0-development",
   "description": "Get random Star Wars names",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "commit": "git-cz",
-    "test": "mocha src/index.test.js -w",
-    "test:single": "istanbul cover -x *.test.js _mocha -- -R spec src/index.test.js",
+    "cover": "nyc npm t",
+    "watch:test": "npm t -- -w",
+    "test": "mocha src/index.test.js -w --require babel-core/register",
     "semantic-release": "semantic-release",
-    "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "build": "babel --copy-files --out-dir dist --ignore *.test.js src",
+    "prebuild": "rimraf dist",
+    "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "report-coverage": "cat ./coverage/lcov.info | codecov"
   },
   "repository": {
@@ -30,13 +33,19 @@
     "unique-random-array": "2.0.0"
   },
   "devDependencies": {
+    "@babel/register": "7.13.8",
+    "babel-cli": "6.26.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-stage-2": "6.24.1",
+    "babel-register": "6.26.0",
     "chai": "4.3.4",
     "codecov.io": "0.1.6",
     "commitizen": "4.2.3",
     "cz-conventional-changelog": "3.3.0",
     "ghooks": "2.0.4",
-    "istanbul": "0.4.5",
     "mocha": "8.3.2",
+    "nyc": "15.1.0",
+    "rimraf": "3.0.2",
     "semantic-release": "^17.4.2"
   },
   "czConfig": {
@@ -44,7 +53,13 @@
   },
   "config": {
     "ghooks": {
-      "pre-commit": "npm run test:single && npm run check-coverage"
+      "pre-commit": "npm run cover && npm run check-coverage"
     }
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-2"
+    ]
   }
 }
